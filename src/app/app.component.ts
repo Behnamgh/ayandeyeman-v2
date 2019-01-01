@@ -7,4 +7,8 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'ayandeyeman-v2';
+  check() {
+    console.log('checking done');
+
+  }
 }
