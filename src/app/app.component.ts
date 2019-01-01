@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { BaseService } from './providers/base.service';
 
 @Component({
   selector: 'app-root',
@@ -7,8 +8,12 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'ayandeyeman-v2';
-  check() {
-    console.log('checking done');
+  constructor(private service: BaseService) {
 
+  }
+  check() {
+    this.service.check().subscribe(result => {
+      console.log(result);
+    });
   }
 }
