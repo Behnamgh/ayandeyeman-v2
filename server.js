@@ -8,6 +8,7 @@ const app = express();
 app.use(express.static(__dirname + '/dist/ayandeyeman-v2'));
 
 app.get('/*', function(req,res) {
+    console.log('request');
     
 res.sendFile(path.join(__dirname+'/dist/ayandeyeman-v2/index.html'));
 });
