@@ -12,7 +12,7 @@ app.get('/data', function(req, res) {
     name: 'behnam'
   });
 });
-app.get('/*', function(req, res) {
+app.get('/', function(req, res) {
   res.sendFile(path.join(__dirname + '/dist/ayandeyeman-v2/index.html'));
 });
 
