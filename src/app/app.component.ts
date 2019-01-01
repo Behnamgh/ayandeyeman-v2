@@ -10,8 +10,14 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class AppComponent {
   title = 'ayandeyeman-v2';
+  defaultLang: string = localStorage.getItem('language') || 'en';
   constructor(private service: BaseService, private translate: TranslateService) {
-    translate.setDefaultLang(localStorage.getItem('language') || 'en');
+    translate.setDefaultLang(this.defaultLang);
 
+  }
+  changeLanguage() {
+    this.defaultLang = this.defaultLang === 'en' ? 'fa' : 'en';
+    localStorage.setItem('language', this.defaultLang);
+    this.translate.setDefaultLang(this.defaultLang);
   }
 }
