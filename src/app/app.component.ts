@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { BaseService } from './providers/base.service';
 
+import { TranslateService } from '@ngx-translate/core';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -8,12 +10,8 @@ import { BaseService } from './providers/base.service';
 })
 export class AppComponent {
   title = 'ayandeyeman-v2';
-  constructor(private service: BaseService) {
+  constructor(private service: BaseService, private translate: TranslateService) {
+    translate.setDefaultLang(localStorage.getItem('language') || 'en');
 
-  }
-  check() {
-    this.service.check().subscribe(result => {
-      console.log(result);
-    });
   }
 }
