@@ -24,6 +24,6 @@ export class AppComponent {
     this.translate.setDefaultLang(this.defaultLang);
   }
   getContacts() {
-    this.authService.get('contact').subscribe(result => console.log);
+    this.authService.get('contact').subscribe(console.log);
   }
 }
