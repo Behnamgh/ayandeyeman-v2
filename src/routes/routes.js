@@ -15,20 +15,14 @@ function apiRouter(database) {
   router
     .route("/contact")
     .get(getContacts)
-
-    // POST endpoint
     .post(addNewContact);
 
   router
     .route("/contact/:contactId")
-    // get specific contact
     .get(getContactWithID)
-
-    // put request
     .put(updateContact)
-
-    // delete request
     .delete(deleteContact);
-    return router;
+
+  return router;
 }
 module.exports = apiRouter;
