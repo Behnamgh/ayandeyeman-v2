@@ -6,6 +6,8 @@ const config = require('../../configs');
 
 const Account = mongoose.model('Account', AccountSchema);
 
+const JWT_SECRET = config.JWT_SECRET || 'XHAREEuyaA0eOFF6NwVjchERhhU3QyfK50dTWBENmlbHCiuPScMD9NgPheWxqhz';
+
 exports.addNewAccount = (req, res) => {
   const newAccount = new Account(req.body);
 
@@ -28,7 +30,7 @@ exports.auth = (req, res) => {
       email: account.email,
       mobile: account.mobile
     };
-    jwt.sign(payload, config.JWT_SECRET, function(err, token) {
+    jwt.sign(payload, JWT_SECRET, function(err, token) {
       if (err) {
         console.log(err);
         return res.status(401).json({ message: 'Error happend,Try again later' });
@@ -42,7 +44,7 @@ exports.auth = (req, res) => {
   });
 };
 exports.reAuth = (req, res) => {
-  jwt.verify(req.body.token, config.JWT_SECRET, function(err, decoded) {
+  jwt.verify(req.body.token, JWT_SECRET, function(err, decoded) {
     if (err) {
       return res.status(401).json({ message: 'token invalid' });
     }
