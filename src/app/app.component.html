@@ -3,8 +3,8 @@
     <a (click)="changeLanguage()"> {{ 'APP_NAME' | translate }}</a>
     <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
       <li class="nav-item active">
-        <a class="nav-link" [routerLink]="['/home']" routerLinkActive="isLoggedIn"
-          >Home <span class="sr-only">(current)</span></a
+        <a class="nav-link" [routerLink]="['/home']" routerLinkActive #rla="routerLinkActive"
+          >Home <span *ngIf="rla.isActive" class="sr-only">(current)</span></a
         >
       </li>
       <li class="nav-item">
