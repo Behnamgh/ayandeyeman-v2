@@ -1,64 +1,36 @@
 const express = require('express');
-// const jwt = require("jsonwebtoken");
-// const bcrypt = require("bcrypt");
-const {
-  addNewContact,
-  getContacts,
-  getContactWithID,
-  updateContact,
-  deleteContact
-} = require('../controllers/crmController');
-const {
-  getModel,
-  addNewModel,
-  getModeWithID,
-  updateModel,
-  deleteModel,
-  getIntent,
-  postIntent
-} = require('../controllers/serviceController');
-const ServiceRegistry = require('./serviceRegistry');
-const serviceRegistry = new ServiceRegistry();
+const jwt = require('jsonwebtoken');
+const bcrypt = require('bcrypt');
+const { addNewLetter } = require('../functions/letter');
+const { addNewAccount, auth, reAuth } = require('../functions/account');
+function nothing(req, res) {
+  res.json({ message: 'nothing' });
+}
 
-function apiRouter(database) {
+function apiRouter() {
   const router = express.Router();
-  router.use((req, res, next) => {
-    req.serviceRegistry = serviceRegistry;
-    next();
-  });
 
-  router.route('/services/:intent/:port').put((req, res, next) => {
-    const serviceIntent = req.params.intent;
-    const servicePort = req.params.port;
+  router.route('/addNewLetter').post(addNewLetter);
+  router.route('/addNewAccount').post(addNewAccount);
 
-    const serviceIp = req.connection.remoteAddress.includes('::')
-      ? `[${req.connection.remoteAddress}]`
-      : req.connection.remoteAddress;
-    serviceRegistry.add(serviceIntent, serviceIp, servicePort);
-    res.json({ result: `${serviceIntent} at ${serviceIp}:${servicePort}` });
-  });
-
-  router
-    .route('/service/:intent')
-    .get(getIntent)
-    .post(postIntent);
-
+  router.route('/auth').post(auth);
+  router.route('/reAuth').post(reAuth);
   router
     .route('/service/:intent/:modelId')
-    .get(getIntent)
-    .put(postIntent)
-    .delete(getIntent);
+    .get(nothing)
+    .put(nothing)
+    .delete(nothing);
 
   router
     .route('/:intent')
-    .get(getModel)
-    .post(addNewModel);
+    .get(nothing)
+    .post(nothing);
 
   router
     .route('/:intent/:modelId')
-    .get(getModeWithID)
-    .put(updateModel)
-    .delete(deleteModel);
+    .get(nothing)
+    .put(nothing)
+    .delete(nothing);
 
   return router;
 }

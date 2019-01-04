@@ -10,8 +10,7 @@ import { environment } from '../../environments/environment';
 export class BaseService {
   private baseUrl = environment.apiUrl;
 
-
-  constructor(protected http: Http) { }
+  constructor(protected http: Http) {}
 
   get(url: string) {
     return this.request(url, RequestMethod.Get);
@@ -34,7 +33,7 @@ export class BaseService {
     headers.append('Content-Type', 'application/json');
 
     const requestOptions = new RequestOptions({
-      url: `${this.baseUrl}/${url}`,
+      url: `/api/${url}`,
       method: method,
       headers: headers
     });
@@ -45,10 +44,8 @@ export class BaseService {
 
     const request = new Request(requestOptions);
 
-    return this.http.request(request).pipe(
-      map((res: Response) => res.json())
-      );
-      // .catch((res: Response) => this.onRequestError(res));
+    return this.http.request(request).pipe(map((res: Response) => res.json()));
+    // .catch((res: Response) => this.onRequestError(res));
   }
 
   // onRequestError(res: Response) {
@@ -64,5 +61,4 @@ export class BaseService {
 
   //   return Observable.throw(error);
   // }
-
 }

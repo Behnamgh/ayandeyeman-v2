@@ -1,6 +1,7 @@
 // import * as mongoose from 'mongoose';
 const mongoose = require('mongoose');
-let { ContactSchema } = require('../models/crmModel');
+let { LetterSchema } = require('../models/letterModel');
+let { AccountSchema } = require('../models/accountModel');
 
 const Contact = mongoose.model('Contact', ContactSchema);
 

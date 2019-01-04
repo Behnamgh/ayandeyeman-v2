@@ -1,6 +1,7 @@
 // import * as mongoose from 'mongoose';
 const mongoose = require('mongoose');
-let { ContactSchema } = require('../models/crmModel');
+let { AccountSchema } = require('../models/accountModel');
+let { LetterSchema } = require('../models/letterModel');
 const request = require('superagent');
 
 function UppercaseFirstChar(string) {
