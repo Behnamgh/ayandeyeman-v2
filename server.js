@@ -15,14 +15,18 @@ mongoose.connect(
 let server = http.createServer(createApp());
 // Start the app by listening on the default Heroku port
 server.listen(process.env.PORT || 8080, (req, res) => {
+  console.log(server.address());
   setInterval(() => {
-    request.put(`http://localhost:8080/api/services/contact/${server.address().port}`, (err, response) => {
-      if (err) {
-        console.log(err);
-        console.log('there is an error for connectiong to original');
+    request.put(
+      `http://${server.address().address}:${server.address().port}/api/services/contact/${server.address().port}`,
+      (err, response) => {
+        if (err) {
+          console.log(err);
+          console.log('there is an error for connectiong to original');
+        }
+        // console.log(response.body);
       }
-      // console.log(response.body);
-    });
+    );
   }, 1000);
   console.log(`your server is running on port ${process.env.PORT || 8080}`);
 });
