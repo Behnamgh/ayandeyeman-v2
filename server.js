@@ -18,7 +18,7 @@ server.listen(process.env.PORT || 8080, (req, res) => {
   setInterval(() => {
     console.log(server.address());
     request.put(
-      `http://${server.address().address}:${server.address().port}/api/services/contact/${server.address().port}`,
+      `http://127.0.0.1:${server.address().port}/api/services/contact/${server.address().port}`,
       (err, response) => {
         if (err) {
           console.log(err);
