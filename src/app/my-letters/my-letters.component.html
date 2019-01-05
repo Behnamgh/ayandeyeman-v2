@@ -1,0 +1,5 @@
+<ngb-accordion [closeOthers]="true" activeIds="static-1">
+  <ngb-panel *ngFor="let letter of letters" id="{{ letter._id }}" title="{{ letter.created_at | jdate }}">
+    <ng-template ngbPanelContent> {{ letter.message }} </ng-template>
+  </ngb-panel>
+</ngb-accordion>

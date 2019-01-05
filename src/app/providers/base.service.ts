@@ -27,7 +27,9 @@ export class BaseService {
   delete(url: string) {
     return this.request(url, RequestMethod.Delete);
   }
-
+  getToken() {
+    return localStorage.getItem('token');
+  }
   request(url: string, method: RequestMethod, body?: Object) {
     const headers = new Headers();
     headers.append('Content-Type', 'application/json');

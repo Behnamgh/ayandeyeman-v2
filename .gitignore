@@ -4,6 +4,8 @@
 /dist
 /tmp
 /out-tsc
+configs.json
+./configs.json
 # dependencies
 /node_modules
 
@@ -36,3 +38,4 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
+configs.json

@@ -51,3 +51,12 @@ exports.reAuth = (req, res) => {
     return res.status(200).json(decoded);
   });
 };
+exports.validateToken = (req, res, next) => {
+  jwt.verify(req.body.token, JWT_SECRET, function(err, decoded) {
+    if (err) {
+      return res.status(401).json({ message: 'token invalid' });
+    }
+    req.validToken = decoded;
+    next();
+  });
+};

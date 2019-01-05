@@ -1,11 +1,11 @@
 <div class="modal-header">
-  <h4 class="modal-title">{{ 'LOG_IN' | translate }}</h4>
+  <h4 class="modal-title">{{ 'REGISTER' | translate }}</h4>
   <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
     <span aria-hidden="true">&times;</span>
   </button>
 </div>
 <div class="modal-body">
-  <form #accountForm="ngForm" (submit)="onSubmitLogin(accountForm)">
+  <form #accountForm="ngForm" (submit)="onSubmitRegister(accountForm)">
     <div class="form-group">
       <label for="exampleInputEmail1">{{ 'EMAIL_ADDRESS' | translate }}</label>
       <input
@@ -22,9 +22,9 @@
       <label for="exampleInputPassword1">{{ 'PASSWORD' | translate }}</label>
       <input type="password" class="form-control" name="password" placeholder="Password" ngModel />
     </div>
-    <div class="form-check">
-      <input type="checkbox" class="form-check-input" id="exampleCheck1" />
-      <label class="form-check-label" for="exampleCheck1">Check me out</label>
+    <div class="form-group">
+      <label for="exampleInputPassword1">{{ 'MOBILE' | translate }}</label>
+      <input type="number" class="form-control" name="mobile" placeholder="mobile" ngModel />
     </div>
     <button type="submit" class="btn btn-primary">{{ 'SUBMIT' | translate }}</button>
   </form>

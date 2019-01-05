@@ -5,6 +5,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { AuthService } from './providers/auth.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AccountFromComponent } from './account-from/account-from.component';
+import { RegisterAccountComponent } from './register-account/register-account.component';
 
 @Component({
   selector: 'app-root',
@@ -26,6 +27,7 @@ export class AppComponent implements OnInit {
       if (result.email !== this.email) {
         localStorage.clear();
         this.token = null;
+        return;
       }
       this.isLoggedIn = true;
     });
@@ -41,6 +43,17 @@ export class AppComponent implements OnInit {
       this.ngOnInit();
     } else {
       this.modalService.open(AccountFromComponent).result.then(result => {
+        this.token = result;
+        this.isLoggedIn = true;
+      });
+    }
+  }
+  registerModal() {
+    this.token = localStorage.getItem('token');
+    if (this.token) {
+      this.ngOnInit();
+    } else {
+      this.modalService.open(RegisterAccountComponent).result.then(result => {
         this.token = result;
         this.isLoggedIn = true;
       });

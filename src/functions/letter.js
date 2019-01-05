@@ -41,7 +41,9 @@ exports.confirmEmailForLetter = (req, res) => {
 };
 
 exports.getLetterForAccount = (req, res) => {
-  Letter.find({ email: req.params.email }, (err, letters) => {
+  console.log('validToken', req.validToken);
+
+  Letter.find({ email: req.validToken.email }, (err, letters) => {
     if (err) {
       res.send(err);
     }

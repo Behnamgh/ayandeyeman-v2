@@ -7,11 +7,13 @@
           >Home <span *ngIf="rla.isActive" class="sr-only">(current)</span></a
         >
       </li>
-      <li class="nav-item">
-        <a class="nav-link" [routerLink]="['/newAccount']" routerLinkActive="!isLoggedIn">Link</a>
+      <li class="nav-item" *ngIf="isLoggedIn">
+        <a class="nav-link" [routerLink]="['/myLetters']">{{ 'MY_LETTERS' | translate }}</a>
       </li>
     </ul>
-    <a *ngIf="!isLoggedIn" (click)="loginModal()">Login</a> <a *ngIf="isLoggedIn" (click)="logOff()">Log out</a>
+    <a class="btn" *ngIf="!isLoggedIn" (click)="loginModal()">{{ 'LOGIN' | translate }}</a>
+    <a class="btn" *ngIf="!isLoggedIn" (click)="registerModal()">{{ 'REGISTER' | translate }}</a>
+    <a class="btn" *ngIf="isLoggedIn" (click)="logOff()">{{ 'LOG_OUT' | translate }}</a>
   </div>
 </nav>
 <div class="container"><router-outlet></router-outlet></div>

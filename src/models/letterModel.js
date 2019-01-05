@@ -3,6 +3,10 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 exports.LetterSchema = new Schema({
+  email: {
+    type: String,
+    required: 'EMAIL_CANT_BE_EMPTY'
+  },
   message: {
     type: String,
     required: 'MESSAGE_CANT_BE_EMPTY'
