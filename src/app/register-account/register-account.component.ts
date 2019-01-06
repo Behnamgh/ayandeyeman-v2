@@ -9,7 +9,7 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./register-account.component.scss']
 })
 export class RegisterAccountComponent implements OnInit {
-  constructor(private authService: AuthService, protected activeModal: NgbActiveModal) {}
+  constructor(private authService: AuthService, public activeModal: NgbActiveModal) {}
 
   ngOnInit() {}
   onSubmitRegister(form: NgForm) {

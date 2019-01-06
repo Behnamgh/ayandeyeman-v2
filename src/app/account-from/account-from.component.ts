@@ -13,7 +13,7 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 export class AccountFromComponent implements OnInit {
   loading: Boolean = false;
 
-  constructor(private authService: AuthService, private router: Router, protected activeModal: NgbActiveModal) {}
+  constructor(private authService: AuthService, private router: Router, public activeModal: NgbActiveModal) {}
 
   ngOnInit() {}
   onSubmitLogin(form: NgForm) {
