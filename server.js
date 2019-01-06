@@ -8,7 +8,7 @@ var configs = require('./configs');
 
 mongoose.Promise = global.Promise;
 mongoose.connect(
-  configs.DB_URL,
+  configs.DB_URL || 'mongodb://test:test1234@ds113935.mlab.com:13935/typescript',
   {
     useNewUrlParser: true
   }
