@@ -19,7 +19,7 @@ export class AppComponent implements OnInit {
   email: String = localStorage.getItem('email');
 
   defaultLang: string = localStorage.getItem('language') || 'en';
-  constructor(private authService: AuthService, private translate: TranslateService, private modalService: NgbModal) {
+  constructor(protected authService: AuthService, private translate: TranslateService, private modalService: NgbModal) {
     translate.setDefaultLang(this.defaultLang);
   }
   ngOnInit() {

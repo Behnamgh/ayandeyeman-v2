@@ -1,6 +1,11 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { MyLettersComponent } from './my-letters.component';
+import { LettersService } from '../providers/letters.service';
+import { TranslateModule } from '@ngx-translate/core';
+import { HttpModule } from '@angular/http';
+import { NgbAccordionModule } from '@ng-bootstrap/ng-bootstrap';
+import { JdatePipe } from '../pipes/jdate.pipe';
 
 describe('MyLettersComponent', () => {
   let component: MyLettersComponent;
@@ -8,7 +13,9 @@ describe('MyLettersComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [MyLettersComponent]
+      declarations: [MyLettersComponent, JdatePipe],
+      imports: [TranslateModule.forRoot(), HttpModule, NgbAccordionModule],
+      providers: [LettersService]
     }).compileComponents();
   }));
 

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { LettersService } from '../providers/letters.service';
+import { Letter } from '../models/letter';
+import { LetterStatus } from '../models/letter-status.enum';
 
 @Component({
   selector: 'app-my-letters',
@@ -7,7 +9,8 @@ import { LettersService } from '../providers/letters.service';
   styleUrls: ['./my-letters.component.scss']
 })
 export class MyLettersComponent implements OnInit {
-  letters: any;
+  letters: Letter[];
+  LetterStatus = LetterStatus;
 
   constructor(private letterService: LettersService) {}
 

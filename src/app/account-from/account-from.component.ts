@@ -4,6 +4,7 @@ import { NgForm } from '@angular/forms';
 import { AuthService } from '../providers/auth.service';
 import { Router } from '@angular/router';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-account-from',
@@ -13,7 +14,12 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 export class AccountFromComponent implements OnInit {
   loading: Boolean = false;
 
-  constructor(private authService: AuthService, private router: Router, public activeModal: NgbActiveModal) {}
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+    public activeModal: NgbActiveModal,
+    translate: TranslateService
+  ) {}
 
   ngOnInit() {}
   onSubmitLogin(form: NgForm) {

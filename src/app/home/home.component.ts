@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { NgForm, EmailValidator, FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { LettersService } from '../providers/letters.service';
+import { Letter } from '../models/letter';
+import { LetterStatus } from '../models/letter-status.enum';
 
 @Component({
   selector: 'app-home',
@@ -8,20 +10,37 @@ import { LettersService } from '../providers/letters.service';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-  constructor(private lettersService: LettersService) {}
+  messages: string[] = [];
+  testBoolean: any;
+  letterGroup: FormGroup;
+  @ViewChild('letterFrom') letterFrom: NgForm;
+  constructor(private formBuilder: FormBuilder, private lettersService: LettersService) {}
 
-  ngOnInit() {}
-  onSubmitLetter(form: NgForm) {
-    console.log('here');
+  ngOnInit() {
+    this.letterGroup = this.formBuilder.group({
+      email: ['', [Validators.required, Validators.email, Validators.pattern('[^ @]*@[^ @]*')]],
+      letterMsg: ['', Validators.required]
+    });
+  }
 
-    const formvalues = Object.assign({}, form.value);
-    this.lettersService.newLetter(formvalues).subscribe(
-      result => {
-        console.log('result', result);
-      },
-      error => {
-        console.log('err');
-      }
-    );
+  onSubmitLetter() {
+    const formvalues: Letter = Object.assign({}, this.letterGroup.value);
+    formvalues.status = LetterStatus.initial;
+    console.log(this.letterFrom);
+
+    if (this.letterGroup.valid) {
+      this.lettersService.newLetter(formvalues).subscribe(
+        result => {
+          console.log(result);
+          this.messages.push('Done');
+        },
+        error => {
+          console.log('err');
+        }
+      );
+    } else {
+      this.messages.push('Error');
+    }
+    console.log(this.messages);
   }
 }

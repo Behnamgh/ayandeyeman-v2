@@ -1,5 +1,9 @@
 {
   "WELCOME": "Welcome",
   "TO": "to",
-  "APP_NAME": "FutureME"
+  "APP_NAME": "FutureME",
+  "LOG_IN": "Log In",
+  "EMAIL_ADDRESS": "Email",
+  "PASSWORD": "Password",
+  "SUBMIT": "Submit"
 }
